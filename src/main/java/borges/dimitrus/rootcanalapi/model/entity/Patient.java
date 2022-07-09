@@ -26,7 +26,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(LocalDate birthdate, String name) {
+    public Patient(Long id, LocalDate birthdate, String name) {
         this.birthdate = birthdate;
         this.name = name;
     }

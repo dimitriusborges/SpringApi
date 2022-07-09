@@ -28,6 +28,11 @@ public class Staple {
         this.type = type;
     }
 
+    public Staple(Long id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }

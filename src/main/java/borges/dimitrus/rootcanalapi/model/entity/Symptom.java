@@ -28,6 +28,11 @@ public class Symptom {
         this.description = description;
     }
 
+    public Symptom(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

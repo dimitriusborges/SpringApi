@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/canal_api/patients")
+@RequestMapping("/patients")
 public class PatientController {
 
 
@@ -24,10 +24,10 @@ public class PatientController {
     private PatientRepository patientRepository;
 
     @GetMapping()
-    public ResponseEntity<List<PatientDto>> getPatientsList(){
+    public ResponseEntity<List<PatientDto>> getAllPatients(){
         List<Patient> allPatients = patientRepository.findAll();
 
-        return ResponseEntity.ok(allPatients.stream().map(PatientDto::fromEntity).collect(Collectors.toList()));
+        return ResponseEntity.ok(allPatients.stream().map(PatientDto::new).collect(Collectors.toList()));
     }
 
     @GetMapping("{id}")
@@ -35,7 +35,7 @@ public class PatientController {
         Optional<Patient> patient = patientRepository.findById(id);
 
         if(patient.isPresent()){
-            return ResponseEntity.ok(PatientDto.fromEntity(patient.get()));
+            return ResponseEntity.ok(new PatientDto(patient.get()));
         }
         else{
             return ResponseEntity.noContent().build();
@@ -48,23 +48,23 @@ public class PatientController {
 
         patientRepository.save(patientToInsert.toEntity());
 
-        return ResponseEntity.accepted().build();
+        return new ResponseEntity<>("", HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
     @Transactional
-    public  ResponseEntity<String> updatePatient(@RequestBody PatientDto newData, @PathVariable Long id){
+    public  ResponseEntity<String> updatePatient(@RequestBody @Valid PatientDto patientNewDataDto, @PathVariable Long id){
         Optional<Patient> patientToUpdate = patientRepository.findById(id);
 
         if(patientToUpdate.isPresent()){
 
-            Patient patientNewData = newData.toEntity();
+            Patient patientNewData = patientNewDataDto.toEntity();
             Patient patientUpdating = patientToUpdate.get();
 
             patientUpdating.setBirthdate(patientNewData.getBirthdate());
             patientUpdating.setName(patientNewData.getName());
 
-            return new ResponseEntity<>("", HttpStatus.ACCEPTED);
+            return ResponseEntity.accepted().build();
         }
         else{
             return ResponseEntity.noContent().build();
@@ -77,10 +77,7 @@ public class PatientController {
         Optional<Patient> patientDoDelete = patientRepository.findById(id);
 
         if(patientDoDelete.isPresent()){
-            Patient patient = patientDoDelete.get();
-
             patientRepository.deleteById(id);
-
             return ResponseEntity.ok().build();
         }
 

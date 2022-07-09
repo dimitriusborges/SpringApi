@@ -8,6 +8,8 @@ import java.time.LocalDate;
 
 public class PatientDto {
 
+    private Long id;
+
     @NotNull
     private String name;
 
@@ -19,8 +21,17 @@ public class PatientDto {
     }
 
     public PatientDto(Patient patient) {
+        this.id = patient.getId();
         this.name = patient.getName();
         this.birthdate = patient.getBirthdate();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,12 +50,9 @@ public class PatientDto {
         this.birthdate = birthdate;
     }
 
-    public Patient toEntity(){
-        return new Patient(this.birthdate, this.name);
-    }
 
-    public static PatientDto fromEntity(Patient patient){
-        return new PatientDto(patient);
+    public Patient toEntity(){
+        return new Patient(this.id, this.birthdate, this.name);
     }
 
     @Override
