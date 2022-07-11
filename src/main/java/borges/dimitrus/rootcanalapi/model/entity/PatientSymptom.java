@@ -11,9 +11,9 @@ public class PatientSymptom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @NotNull
-    private Symptom symptomType;
+    private Symptom symptom;
 
 
     @NotNull
@@ -26,9 +26,9 @@ public class PatientSymptom {
     public PatientSymptom() {
     }
 
-    public PatientSymptom(Long id, Symptom symptomType, LocalDate reportDate, Patient patient) {
+    public PatientSymptom(Long id, Symptom symptom, LocalDate reportDate, Patient patient) {
         this.id = id;
-        this.symptomType = symptomType;
+        this.symptom = symptom;
         this.reportDate = reportDate;
         this.patient = patient;
     }
@@ -42,11 +42,11 @@ public class PatientSymptom {
     }
 
     public Symptom getSymptom() {
-        return symptomType;
+        return symptom;
     }
 
     public void setSymptom(Symptom symptomType) {
-        this.symptomType = symptomType;
+        this.symptom = symptomType;
     }
 
     public LocalDate getReportDate() {
