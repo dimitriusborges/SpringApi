@@ -27,6 +27,7 @@ public class Patient {
     }
 
     public Patient(Long id, LocalDate birthdate, String name) {
+        this.id = id;
         this.birthdate = birthdate;
         this.name = name;
     }

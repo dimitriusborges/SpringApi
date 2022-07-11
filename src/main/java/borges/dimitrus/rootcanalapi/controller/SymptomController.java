@@ -54,9 +54,9 @@ public class SymptomController {
 
         if(symptomToUdate.isPresent()){
             Symptom symptomUpdating = symptomToUdate.get();
-            Symptom symptomNewDate = symptomNewDataDto.toEntity();
+            Symptom symptomNewData = symptomNewDataDto.toEntity();
 
-            symptomUpdating.setDescription(symptomNewDate.getDescription());
+            symptomUpdating.setDescription(symptomNewData.getDescription());
 
             return ResponseEntity.accepted().build();
         }

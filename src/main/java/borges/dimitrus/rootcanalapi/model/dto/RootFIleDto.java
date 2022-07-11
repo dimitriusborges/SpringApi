@@ -47,7 +47,7 @@ public class RootFIleDto {
     }
 
     public RootFile toEntinty(){
-        return new RootFile(this.getTypeName(), this.getBrand());
+        return new RootFile(this.getId(), this.getTypeName(), this.getBrand());
     }
 
 

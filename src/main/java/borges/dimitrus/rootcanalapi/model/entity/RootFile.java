@@ -24,7 +24,8 @@ public class RootFile {
     public RootFile() {
     }
 
-    public RootFile(String typeName, String brand) {
+    public RootFile(Long id, String typeName, String brand) {
+        this.id = id;
         this.typeName = typeName;
         this.brand = brand;
     }

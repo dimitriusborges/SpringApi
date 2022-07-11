@@ -1,74 +1,65 @@
-package borges.dimitrus.rootcanalapi.model.entity;
+package borges.dimitrus.rootcanalapi.model.dto;
 
-import javax.persistence.*;
+import borges.dimitrus.rootcanalapi.model.entity.Treatment;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Entity
-public class Treatment {
+public class TreatmentDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotNull
     private LocalDate procedureDate;
 
     @NotNull
-    @ManyToOne
-    private Patient patient;
+    private PatientDto patient;
 
     @NotNull
-    @ManyToOne
-    private RootFile rootFile;
+    private RootFIleDto rootFile;
 
     @NotNull
-    @ManyToOne
-    private Staple staple;
+    private StapleDto staple;
 
     @NotNull
+    @Max(32)
+    @Min(1)
     private Integer tooth;
 
     private Integer canal1;
-
     private Integer canal2;
-
     private Integer canal3;
-
     private Integer canal4;
-
     private Integer canal5;
 
     private String observation;
 
-    public Treatment() {
+    public TreatmentDto() {
     }
 
-    public Treatment(Long id, LocalDate procedureDate, Patient patient, RootFile rootFile, Staple staple, Integer tooth,
-                     Integer canal1,
-                     Integer canal2,
-                     Integer canal3,
-                     Integer canal4,
-                     Integer canal5, String observation) {
-        this.id = id;
-        this.procedureDate = procedureDate;
-        this.patient = patient;
-        this.rootFile = rootFile;
-        this.staple = staple;
-        this.tooth = tooth;
-        this.canal1 = canal1;
-        this.canal2 = canal2;
-        this.canal3 = canal3;
-        this.canal4 = canal4;
-        this.canal5 = canal5;
-        this.observation = observation;
+    public TreatmentDto(Treatment treatment) {
+
+        this.id = treatment.getId();
+        this.procedureDate = treatment.getProcedureDate();
+        this.patient = new PatientDto(treatment.getPatient());
+        this.rootFile = new RootFIleDto(treatment.getRootFile());
+        this.staple = new StapleDto(treatment.getStaple());
+        this.tooth = treatment.getTooth();
+        this.canal1 = treatment.getCanal1();
+        this.canal2 = treatment.getCanal2();
+        this.canal3 = treatment.getCanal3();
+        this.canal4 = treatment.getCanal4();
+        this.canal5 = treatment.getCanal5();
+        this.observation = treatment.getObservation();
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -80,27 +71,27 @@ public class Treatment {
         this.procedureDate = procedureDate;
     }
 
-    public Patient getPatient() {
+    public PatientDto getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(PatientDto patient) {
         this.patient = patient;
     }
 
-    public RootFile getRootFile() {
+    public RootFIleDto getRootFile() {
         return rootFile;
     }
 
-    public void setRootFile(RootFile rootFile) {
+    public void setRootFile(RootFIleDto rootFile) {
         this.rootFile = rootFile;
     }
 
-    public Staple getStaple() {
+    public StapleDto getStaple() {
         return staple;
     }
 
-    public void setStaple(Staple staple) {
+    public void setStaple(StapleDto staple) {
         this.staple = staple;
     }
 
@@ -158,5 +149,11 @@ public class Treatment {
 
     public void setObservation(String observation) {
         this.observation = observation;
+    }
+
+    public Treatment toEntity(){
+        return new Treatment(
+                this.id, this.procedureDate, this.patient.toEntity(), this.rootFile.toEntinty(), this.staple.toEntity(), this.tooth,
+                this.canal1, this.canal2, this.canal3, this.canal4, this.canal5, this.observation);
     }
 }

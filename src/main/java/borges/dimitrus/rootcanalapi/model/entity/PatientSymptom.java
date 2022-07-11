@@ -26,7 +26,8 @@ public class PatientSymptom {
     public PatientSymptom() {
     }
 
-    public PatientSymptom(Symptom symptomType, LocalDate reportDate, Patient patient) {
+    public PatientSymptom(Long id, Symptom symptomType, LocalDate reportDate, Patient patient) {
+        this.id = id;
         this.symptomType = symptomType;
         this.reportDate = reportDate;
         this.patient = patient;
@@ -40,11 +41,11 @@ public class PatientSymptom {
         this.id = id;
     }
 
-    public Symptom getSymptomType() {
+    public Symptom getSymptom() {
         return symptomType;
     }
 
-    public void setSymptomType(Symptom symptomType) {
+    public void setSymptom(Symptom symptomType) {
         this.symptomType = symptomType;
     }
 
