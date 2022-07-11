@@ -37,3 +37,22 @@ The service will have data representations of:
 Schema:
 
 ![database_schema](rootcanal_spring.png)
+
+
+#### Next Steps
+
+I will respect the order I'm presenting them.
+
+1. Proper answers alongside Http Codes
+
+2. Unit tests for:
+   * Data integrity after POST,PUT and DELETE
+   * System behavior with broken messages
+
+3. Simple Authentication and Authorization
+  
+4. Some missing requisitions:
+   * Get every treatment from Patient A
+   * Get every symptom from Patient A
+   
+5. Cache and Paging
