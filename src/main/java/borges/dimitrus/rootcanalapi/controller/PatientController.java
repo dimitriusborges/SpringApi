@@ -46,7 +46,9 @@ public class PatientController {
     @PostMapping
     public ResponseEntity<String> insertNewPatient(@RequestBody @Valid PatientDto patientToInsert){
 
-        patientRepository.save(patientToInsert.toEntity());
+        Patient newPatient = patientToInsert.toEntity();
+        newPatient.setId(null);
+        patientRepository.save(newPatient);
 
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }
@@ -78,7 +80,7 @@ public class PatientController {
 
         if(patientDoDelete.isPresent()){
             patientRepository.deleteById(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.accepted().build();
         }
 
         return ResponseEntity.noContent().build();
