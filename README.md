@@ -44,7 +44,6 @@ Schema:
 I will respect the order I'm presenting them.
 
 1. Unit tests for:
-   * CRUD Tests
    * Data integrity after POST,PUT and DELETE
    * System behavior with broken messages
 
