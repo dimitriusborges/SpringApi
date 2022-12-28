@@ -43,14 +43,14 @@ Schema:
 
 I will respect the order I'm presenting them.
 
-1. Unit tests for:
+1. Tests for:
    * Data integrity after POST,PUT and DELETE
+   * Endpoint tests
    * System behavior with broken messages
-
-2. Simple Authentication and Authorization
-  
-3. Some missing requisitions:
+2. Simple Authentication and Authorization  
+3. Multitenant
+4. Some missing requisitions:
    * Get every treatment from Patient A
-   * Get every symptom from Patient A
-   
-4. Cache and Paging
+   * Get every symptom from Patient A   
+5. Cache and Paging
+6. Endpoint documentation with Sring REST Docs 
