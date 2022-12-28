@@ -4,7 +4,7 @@ This project is one from a series that I'm doing as part of my studies on REST A
 project, the first, and more experimental, one, lets call it the "Project 1", was done without the help of any Framework, just Java and JDBC (and a little bit 
 of Gson), it is nowhere near this one in therms of features or whatever, but it can be seen [here](https://github.com/dimitriusborges/FrameworklessApi).
 
-If you enter this repository right here and thinks "huuum, there are a lot of stuff missing.", you probably are right! I'm doing
+If you enter this repository right here and thinks "huuum, there are a lot of stuff missing.", you are probably right! I'm doing
 it in my free time and when I'm feeling doing it, do it will be a slow evolution. But I do want to make things as right as possible, just don't be too judgmental, ok?
 
 # Root Canal Api
